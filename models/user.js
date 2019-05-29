@@ -22,7 +22,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-
     progress: {
       type: DataTypes.INTEGER,
       defaultValue: 0
