@@ -1,2 +1,18 @@
 body {
     font-family: 'Ubuntu', sans-serif }
+
+.img-fluid {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.carousel .item {
+    height: 600px;
+  };
+  
+  .carousel-item{
+    height: 600px;
+} 
+.carousel-item img{
+    height: 600px;
+}
