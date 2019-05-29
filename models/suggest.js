@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const BucketList = sequelize.define("Bucketlist", {
+    const Suggest = sequelize.define("Suggest", {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -17,18 +17,9 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 isUrl: true
             }
-        },
-        completion: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
         }
+      
     });
-    BucketList.associate = function(models) {
-        bucketList.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    }
-    return BucketList;
+   
+    return Suggest;
 };
