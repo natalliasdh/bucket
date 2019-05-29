@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         category: {
-            type: DataTypes.String,
+            type: DataTypes.STRING,
             allowNull: false
         },
         image: {
