@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const BucketList = sequelize.define("Bucketlist", {
+    const BucketList = sequelize.define("BucketList", {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         category: {
-            type: DataTypes.String,
+            type: DataTypes.STRING,
             allowNull: false
         },
         image: {
@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
     BucketList.associate = function(models) {
-        bucketList.belongsTo(models.User, {
+        BucketList.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
