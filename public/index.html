@@ -11,6 +11,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link
       href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap"
       rel="stylesheet"
@@ -42,7 +43,7 @@
           <strong> [/bʌkət/] </strong>
         </a>
         <div>
-          <button type="button" class="btn btn-success">SIGN UP</button>
+          <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> SIGN UP</button>
         </div>
       </nav>
     </div>
@@ -52,12 +53,26 @@
       data-ride="carousel"
     >
       <div class="carousel-content rounded">
-        <h3>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit [bʌkət]
-        </h3>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
+          </div>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Username">
+        </div>
         <div>
-          <button type="button" class="btn btn-success">SIGN UP</button>
-          <button type="button" class="btn btn-success">LOG IN</button>
+
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-unlock-alt"></i></span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Password">
+          </div>
+
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i> SIGN UP</button>
+          <button type="button" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> SIGN IN</button>
         </div>
       </div>
       <div class="carousel-inner">
