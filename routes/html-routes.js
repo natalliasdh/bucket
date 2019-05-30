@@ -4,4 +4,12 @@ module.exports = function (app) {
 
         res.sendFile(path.join(__dirname, "../public/index.html"));
     });
+    app.get("/index2", function (req, res) {
+
+        res.sendFile(path.join(__dirname, "../public/index2.html"));
+    });
+    app.get("/profile", function (req, res) {
+
+        res.sendFile(path.join(__dirname, "../public/profile.html"));
+    });
 }
