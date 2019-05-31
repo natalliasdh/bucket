@@ -98,12 +98,16 @@
         </div>
 
         <div class="d-flex justify-content-center">
-          <button type="button" class="btn btn-primary">
-            <i class="fas fa-user-plus"></i> SIGN UP
-          </button>
-          <button type="button" class="btn btn-success">
-            <i class="fas fa-sign-in-alt"></i> SIGN IN
-          </button>
+          <a class="nav-link" href="#form-sign-up">
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-user-plus"></i> SIGN UP
+            </button>
+          </a>
+          <a class="nav-link" href="#">
+            <button type="button" class="btn btn-success">
+              <i class="fas fa-sign-in-alt"></i> SIGN IN
+            </button>
+          </a>
         </div>
       </div>
       <div class="carousel-inner">
@@ -148,10 +152,39 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    <div class="block-how-it-works">
+      <div class="inner-wrap row">
+        <ul id="how-it-works">
+          <li class="col-sm-4 float-left">
+            <a href="" class="set-goals"><i class="fas fa-user-plus"></i></a>
+            <h4 class="text-center">
+              Set your goals and get tips as you go
+            </h4>
+          </li>
+          <li class="col-sm-4 float-left">
+            <a href="" class="set-goals"><i class="fas fa-user-plus"></i></a>
+            <h4 class="text-center">
+              Get inspired with people sharing the same goals
+            </h4>
+          </li>
+          <li class="col-sm-4 float-left">
+            <a href="" class="set-goals"><i class="fas fa-user-plus"></i></a>
+            <h4 class="text-center">
+              See how others have achieved their goals
+            </h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Container starts here -->
     <div class="container">
-      <form
+      <!-- Sign up form -->
+      <div id="form-append"></div>
+      <!-- <form
+        id="form-sign-up"
         oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'
       >
+        <h2>Sign Up</h2>
         <div class="form-group">
           <label for="exampleInputEmail1">Username</label>
           <input
@@ -206,8 +239,79 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-      </form>
+      </form> -->
+
+      <div class="card-columns mt-5">
+        <div class="user-buckets-main">
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Card title that wraps to a new line</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Card title that wraps to a new line</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Card title that wraps to a new line</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Card title that wraps to a new line</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Card title that wraps to a new line</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Card title that wraps to a new line</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- container ends here -->
     </div>
   </body>
 </html>
