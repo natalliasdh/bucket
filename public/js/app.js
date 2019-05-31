@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  renderSignUpForm();
+  // renderSignUpForm();
 });
 
 const renderSignUpForm = function() {

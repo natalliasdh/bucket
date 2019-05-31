@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "123456",
+    "password": "funfunfun",
     "database": "buhkitdb",
     "host": "127.0.0.1",
     "dialect": "mysql"
