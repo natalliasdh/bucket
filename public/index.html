@@ -17,11 +17,17 @@
       crossorigin="anonymous"
     />
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-
-
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
 
     <link
       rel="stylesheet"
@@ -46,19 +52,10 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-
-</head>
-<body>
-
-    <script src="/js/app.js" type="text/javascript"></script>
-  </head>
-  <body>
-
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="js/app.js" type="text/javascript"></script>
   </head>
   <body>
-
     <div>
       <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">
@@ -173,20 +170,32 @@
       <div class="block-how-it-works">
         <div class="inner-wrap row">
           <ul id="how-it-works">
-            <li class="col-sm-4 float-left d-flex flex-column align-items-center">
-              <a href="" class="set-goals"><i class="far fa-check-square fa-2x"></i></a>
+            <li
+              class="col-sm-4 float-left d-flex flex-column align-items-center"
+            >
+              <a href="" class="set-goals"
+                ><i class="far fa-check-square fa-2x"></i
+              ></a>
               <h4 class="text-center">
                 Set your goals and get tips as you go
               </h4>
             </li>
-            <li class="col-sm-4 float-left d-flex flex-column align-items-center">
-              <a href="" class="set-goals"><i class="fas fa-users fa-2x"></i></a>
+            <li
+              class="col-sm-4 float-left d-flex flex-column align-items-center"
+            >
+              <a href="" class="set-goals"
+                ><i class="fas fa-users fa-2x"></i
+              ></a>
               <h4 class="text-center">
                 Get inspired with people sharing the same goals
               </h4>
             </li>
-            <li class="col-sm-4 float-left d-flex flex-column align-items-center">
-              <a href="" class="set-goals"><i class="fas fa-tasks fa-2x"></i></a>
+            <li
+              class="col-sm-4 float-left d-flex flex-column align-items-center"
+            >
+              <a href="" class="set-goals"
+                ><i class="fas fa-tasks fa-2x"></i
+              ></a>
               <h4 class="text-center">
                 See how others have achieved their goals
               </h4>
@@ -194,7 +203,7 @@
           </ul>
         </div>
       </div>
-      </div>
+    </div>
     <!-- Container starts here -->
     <div class="container">
       <!-- Sign up form -->
@@ -203,53 +212,100 @@
         id="form-sign-up"
         oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'
       >
-      <div class="card">
+        <div class="card">
           <div class="card-header">
             <h3>Sign Up</h3>
           </div>
 
           <div class="card-body">
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
-              </div>
-              <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter Username" id="userName">
-            </div>
-            
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-at"></i></span>
-                </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="userEmail" placeholder="Enter Email">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  ><i class="fas fa-user"></i
+                ></span>
               </div>
-
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-lock"></i></span>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="userPassword" placeholder="Enter Password">
-                </div>
-
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-unlock"></i></span>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="userPassword2" placeholder="Re-enter Password">
-                  </div>
-
-
-                  <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="fas fa-globe-americas"></i></span>
-                      </div>
-                      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="userLocation" placeholder="What country do you live in?">
-                    </div>
-                    <button type="submit" id="userAdd" class="btn btn-success btn-block"><i class="fas fa-check"></i></button>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                placeholder="Enter Username"
+                id="userName"
+              />
             </div>
-          </div>
-                    
 
-        
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  ><i class="fas fa-at"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                id="userEmail"
+                placeholder="Enter Email"
+              />
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  ><i class="fas fa-lock"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                id="userPassword"
+                placeholder="Enter Password"
+              />
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  ><i class="fas fa-unlock"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                id="userPassword2"
+                placeholder="Re-enter Password"
+              />
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                  ><i class="fas fa-globe-americas"></i
+                ></span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                id="userLocation"
+                placeholder="What country do you live in?"
+              />
+            </div>
+            <button
+              type="submit"
+              id="userAdd"
+              class="btn btn-success btn-block"
+            >
+              <i class="fas fa-check"></i>
+            </button>
+          </div>
+        </div>
       </form>
 
       <div class="card-columns mt-5">
