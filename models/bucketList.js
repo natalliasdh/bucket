@@ -1,34 +1,32 @@
 module.exports = function(sequelize, DataTypes) {
-    const BucketList = sequelize.define("BucketList", {
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                isAlphanumeric: true
-            }
-        },
-        category: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        image: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                isUrl: true
-            }
-        },
-        completion: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
-        }
-    });
-    BucketList.associate = function(models) {
-        BucketList.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+  const BucketList = sequelize.define("BucketList", {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {}
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        isUrl: true
+      }
+    },
+    completion: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
-    return BucketList;
+  });
+  BucketList.associate = function(models) {
+    BucketList.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+  return BucketList;
 };
