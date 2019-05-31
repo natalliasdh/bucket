@@ -31,23 +31,37 @@ $(document).ready(function () {
             }).then(profile);
         };
 
-    });        
-    
+    });
+
     function profile() {
 
 
-         window.location.assign("/profile")
-       //  $(window).load(view);
-         
-        
-        
+        window.location.assign("/profile")
+        //  $(window).load(view);
 
-        };
+    };
 
-        function view() {
 
-                var n=localStorage.getItem("ID");
-            $("#hello").append("helllllooooooWS");
-            console.log("hello");
-        }
+
+
+    $("#signIn").on("click", function (event) {
+        event.preventDefault();
+        var nameExist = $("#nameExist").val();
+        var passwordExist = $("#passwordExist").val();
+
+        $.get("/api/users", function (data) {
+            console.log("data", data);
+
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].name == nameExist && data[i].password == passwordExist) {localStorage.setItem("ID", data[i].id); profile(); return }
+
+            };
+            console.log("username or password does not exist");
+
+        }).then();
+
+
+
+    });
+
 });
