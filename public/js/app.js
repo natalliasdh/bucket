@@ -1,6 +1,5 @@
 $(document).ready(function() {
   // renderSignUpForm();
-  $(".add-new-bucket").on("click", renderModal);
 });
 
 const renderSignUpForm = function() {
@@ -47,34 +46,3 @@ $("#use-current").click(function() {
     });
   }
 });
-
-// render modal
-const renderModal = function() {
-  console.log("add new bucket");
-  $("#new-bucket-modal").modal();
-  document.querySelector(".modal-body").innerHTML = `
-  <form>
-      <div class= "form-group">
-        <input id="list-title" class="form-control" type="text" placeholder="Bucket Title">
-      </div>
-      <div class="form-group">
-        <label for="list-category">Category</label>
-        <select class="form-control" id="list-category">
-          <option>Travel</option>
-          <option>Adventure</option>
-          <option>Educational</option>
-          <option>Family</option>
-          <option>Volunteer</option>
-          <option>Financial</option>
-          <option>Health</option>
-          <option>Personal</option>
-        </select>
-      </div>
-      <div class= "form-group">
-        <input id="list-img" class="form-control" type="text" placeholder="Img URL">
-      </div>
-  </form>
-  `;
-
-  
-};
