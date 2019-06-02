@@ -70,6 +70,8 @@ const renderBuckets = function(userId) {
   $.get("/api/users/" + userId, function(data) {
     console.log("users data:", data.BucketLists);
     data.BucketLists.forEach(function(elem) {
+      const dateFormat = elem.createdAt.split("T");
+
       $(".buckets-listed").append(
         `
         <div class="card">
@@ -81,7 +83,7 @@ const renderBuckets = function(userId) {
               <div class="card-text">
                 <p>Category: ${elem.category}</p>
                 <p>Completed: ${elem.completion}</p>
-                <p>Created on: ${elem.createdAt}</p>
+                <p>Created on: ${dateFormat[0]}</p>
               </div>
             </div>
           </div>
