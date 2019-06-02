@@ -34,7 +34,7 @@ $("#use-current").click(function() {
         .get("https://maps.googleapis.com/maps/api/geocode/json", {
           params: {
             latlng: position.coords.latitude + "," + position.coords.longitude,
-            key: "AIzaSyCtSbsFjj6trQtrUAd2xuDav76iXNZZEno"
+            key: ""
           }
         })
         .then(function(response) {
