@@ -71,7 +71,7 @@ const renderBuckets = function(userId) {
     console.log("users data:", data.BucketLists);
     data.BucketLists.forEach(function(elem) {
       const dateFormat = elem.createdAt.split("T");
-
+      
       $(".buckets-listed").append(
         `
         <div class="card">
@@ -105,7 +105,10 @@ console.log(completeUp);
       method: "PUT",
       url: "/api/buckets/"+ idComplete,
       data: completeUp
-    }).then();
+    }).then(function(){
+      $(".buckets-listed").empty();
+      renderBuckets(userId);
+    });
   });
   });
 
