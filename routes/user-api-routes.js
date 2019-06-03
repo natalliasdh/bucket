@@ -50,5 +50,21 @@ module.exports = function(app) {
     }).then(function(result) {
       res.json(result);
     });
+    app.put("/api/buckets/:id", function(req,res){
+        var upComplete = {
+            title: req.body.title,
+            category: req.body.category,
+            image: req.body.image,
+            completion: req.body.completion,
+            UserId: req.body.UserId   
+        };
+        db.BucketList.update(upComplete, {
+            where: {id: req.params.id}
+        }).then(function (result){
+            res.json(result);
+        }).catch(function(err){
+            res.json(err);
+        });
+    });
   });
 };
