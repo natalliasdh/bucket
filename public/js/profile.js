@@ -84,25 +84,21 @@ const renderBuckets = function(userId) {
                 <p>Category: ${elem.category}</p>
                 <p>Completed: ${elem.completion}</p>
                 <p>Created on: ${dateFormat[0]}</p>
-                <button type="submit" id="complete" data-id="${elem.id}">Complete</button>
+                <button type="submit" id="complete" class="completeBtn" data-id="${elem.id}">Complete</button>
               </div>
             </div>
           </div>
         `
       );
     });
-    $("#complete").on("click", function(event){
+    $(".completeBtn").on("click", function(event){
       console.log("click works");
       event.preventDefault();
   
     var idComplete= $(this).attr("data-id");
     console.log(idComplete);
     var completeUp = {
-      title: data.title,
-      category: data.category,
-      image: data.image,
-      completion: true,
-      userId: userId
+      completion: true
     };
 console.log(completeUp);
     $.ajax({
