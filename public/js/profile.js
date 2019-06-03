@@ -27,7 +27,10 @@ $(document).ready(function() {
   });
 
   $(".add-new-bucket").on("click", renderModal);
-
+  $("#log-out").on("click", function() {
+    localStorage.removeItem("ID");
+    window.location.href = "/";
+  });
   var n = localStorage.getItem("ID");
   $("#hello").append("helllllooooooWS");
   console.log("hello");
@@ -71,7 +74,7 @@ const renderBuckets = function(userId) {
     console.log("users data:", data.BucketLists);
     data.BucketLists.forEach(function(elem) {
       const dateFormat = elem.createdAt.split("T");
-      
+
       $(".buckets-listed").append(
         `
         <div class="card">
@@ -84,34 +87,35 @@ const renderBuckets = function(userId) {
                 <p>Category: ${elem.category}</p>
                 <p>Completed: ${elem.completion}</p>
                 <p>Created on: ${dateFormat[0]}</p>
-                <button type="submit" id="complete" class="completeBtn" data-id="${elem.id}">Complete</button>
+                <button type="submit" id="complete" class="completeBtn" data-id="${
+                  elem.id
+                }">Complete</button>
               </div>
             </div>
           </div>
         `
       );
     });
-    $(".completeBtn").on("click", function(event){
+    $(".completeBtn").on("click", function(event) {
       console.log("click works");
       event.preventDefault();
-  
-    var idComplete= $(this).attr("data-id");
-    console.log(idComplete);
-    var completeUp = {
-      completion: true
-    };
-console.log(completeUp);
-    $.ajax({
-      method: "PUT",
-      url: "/api/buckets/"+ idComplete,
-      data: completeUp
-    }).then(function(){
-      $(".buckets-listed").empty();
-      renderBuckets(userId);
+
+      var idComplete = $(this).attr("data-id");
+      console.log(idComplete);
+      var completeUp = {
+        completion: true
+      };
+      console.log(completeUp);
+      $.ajax({
+        method: "PUT",
+        url: "/api/buckets/" + idComplete,
+        data: completeUp
+      }).then(function() {
+        $(".buckets-listed").empty();
+        renderBuckets(userId);
+      });
     });
-  });
   });
 
   // document.querySelector(".buckets-listed").innerHTML = `
-  
 };
