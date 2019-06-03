@@ -11,6 +11,7 @@ const renderSignUpForm = function() {
 
 const renderUserBucketMain = function() {};
 
+// google sign in
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -25,24 +26,3 @@ function signOut() {
     console.log("User signed out.");
   });
 }
-
-$("#use-current").click(function() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position);
-      axios
-        .get("https://maps.googleapis.com/maps/api/geocode/json", {
-          params: {
-            latlng: position.coords.latitude + "," + position.coords.longitude,
-            key: ""
-          }
-        })
-        .then(function(response) {
-          console.log(response.data.results[7].formatted_address);
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-    });
-  }
-});
