@@ -59,3 +59,7 @@ h1 span.spacer {
 .header-text {
   z-index: 10;
 }
+
+.profile-card-header{
+  opacity: 0.5;
+}

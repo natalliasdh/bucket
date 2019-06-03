@@ -41,7 +41,7 @@ const renderModal = function() {
   document.querySelector(".bucket-modal-body").innerHTML = `
   <form>
       <div class= "form-group">
-        <input id="list-title" class="form-control" type="text" placeholder="Bucket Title">
+        <input id="list-title" class="form-control" type="text" placeholder="Drop Title">
       </div>
       <div class="form-group">
         <select class="form-control" id="list-category" required = "required">
