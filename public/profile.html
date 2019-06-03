@@ -60,32 +60,39 @@
         </div>
       </nav>
     </div>
-    <div class="container">
-      <div class="jumbotron jumbotron-fluid my-3 rounded">
-        <div class="container">
-          <h1 class="display-4">Welcome Back</h1>
-          <p class="lead">
-            This is a modified jumbotron that occupies the entire horizontal
-            space of its parent.
-          </p>
-        </div>
-      </div>
-    </div>
+
     <header>
-      <h2 class="mx-3">My Bucket List</h2>
+       
+      <div class="header-background">
+          <h1><span>Welcome back, <span class='spacer'></span><br /><span class='spacer'></span>${username} !</span></h1>
+      </div>
     </header>
-    <hr />
-    <div class="container">
-      <button type="button" class="btn btn-info add-new-bucket">
-        <i class="far fa-plus-square"></i>
+<!-- <div class="profile-header">
+  <div class="image">
+    
+    <img src="images/spencer-davis-1476603-unsplash-header2.png" alt="" />
+    
+    <h2>A Movie in the Park:<br />Kung Fu Panda</h2> -->
+
+</div>
+</div>
+    <!-- <hr /> -->
+    <div class="mx-5 card">
+    <div class="card-header">
+      <h2 class="d-inline-block">Your Buckets: </h2>
+      <button type="button" class="btn btn-info add-new-bucket float-right">
+        ADD <i class="fas fa-plus-circle"></i>
       </button>
-      <div class="card-columns mt-5">
+      
+    </div>
+    
+      <div class="card-columns mt-5 card-body">
         <div class="user-buckets-main">
           <div class="buckets-listed"></div>
         </div>
       </div>
     </div>
-
+  </div>
     <!-- Modal -->
     <div id="new-bucket-modal" class="modal fade" role="dialog">
       <div class="modal-dialog">
