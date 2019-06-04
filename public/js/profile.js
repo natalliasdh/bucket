@@ -28,12 +28,50 @@ $(document).ready(function () {
     });
   });
 
-  $(".add-new-bucket").on("click", renderModal);
+  // add suggestion
+  $("#render-suggest").on("click", ".add-suggest", function(event) {
+    event.preventDefault();
+    console.log("suggest click works");
+    console.log("this", $(this).parents(".card"));
+    var idSuggest = $(this).attr("data-id");
+    console.log(idSuggest);
+    var titleInput = $(this)
+      .parent(".card-text")
+      .attr("data-title");
+    var catInput = $(this)
+      .parent(".card-text")
+      .attr("data-cat");
+    var imgInput = $(this)
+      .parent(".card-text")
+      .attr("data-img");
 
+    console.log("title input", titleInput);
+    var userBuck = {
+      title: titleInput,
+      category: catInput,
+      image: imgInput,
+      UserId: userId
+    };
+    console.log("userBucket", userBuck);
+    $.post("/api/buckets", userBuck, function() {
+      window.location.href = "/profile";
+    });
+  });
+
+  //
+  $(".add-new-bucket").on("click", renderModal);
+  $("#log-out").on("click", function() {
+    localStorage.removeItem("ID");
+    window.location.href = "/";
+  });
   var n = localStorage.getItem("ID");
-  $("#hello").append("helllllooooooWS");
-  console.log("hello");
-  console.log(n);
+
+  //Show suggestions
+  $("#suggest-show-btn").on("click", function() {
+    console.log("click suggest");
+    $("#render-suggest").empty();
+    renderSuggestions(userId);
+  });
 });
 
 // render modal
@@ -71,7 +109,9 @@ const renderBuckets = function (userId) {
 
   $.get("/api/users/" + userId, function (data) {
     console.log("users data:", data.BucketLists);
-    data.BucketLists.forEach(function (elem) {
+    $("#user-name-head").empty();
+    $("#user-name-head").append(data.name);
+    data.BucketLists.forEach(function(elem) {
       const dateFormat = elem.createdAt.split("T");
 
       $(".buckets-listed").append(
@@ -141,3 +181,33 @@ const renderBuckets = function (userId) {
   // document.querySelector(".buckets-listed").innerHTML = `
 
 };
+
+function renderSuggestions(id) {
+  console.log("inside render suggest");
+  $.get("/api/suggest/", function(data) {
+    console.log("suggest data:", data);
+    data.forEach(function(elem) {
+      $("#render-suggest").append(
+        `
+        <div class="card">
+            <img class="card-img-top" src="${
+              elem.image
+            }" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">${elem.title}</h5>
+              <div class="card-text" data-cat="${elem.category}" data-title="${
+          elem.title
+        }" data-img="${elem.image}">
+                <p class="card-cat">Category: ${elem.category}</p>
+                <button type="submit" class="btn btn-info add-suggest" data-id="${
+                  elem.id
+                }">ADD SUGGESTED 
+                <i class="fas fa-tint"></i></button>
+              </div>
+            </div>
+          </div>
+        `
+      );
+    });
+  });
+}

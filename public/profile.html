@@ -1,124 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>[/bʌkət/]</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="js/profile.js" type="text/javascript"></script>
-  </head>
-  <body>
-    <div>
-      <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">
-          <img
-            src="../Images/bucketlist icon less white.png"
-            width="30"
-            height="30"
-            class="d-inline-block align-top"
-            alt=""
-          />
-          <strong> [/bʌkət/] </strong>
-        </a>
-        <div>
-          <button type="button" class="btn btn-danger">
-            <i class="fas fa-sign-out-alt"></i> SIGN OUT
-          </button>
-        </div>
-      </nav>
-    </div>
 
-    <header>
-       
-      <div class="header-background">
-          <h1><span>Hello, <span class='spacer'></span><br /><span class='spacer'></span><span id="greeting">${username}</span> !</span></h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>[/bʌkət/]</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="js/profile.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">
+        <img src="../Images/bucketlist icon less white.png" width="30" height="30" class="d-inline-block align-top"
+          alt="" />
+        <strong> [/bʌkət/] </strong>
+      </a>
+      <div>
+        <button id="log-out" type="button" class="btn btn-danger">
+          <i class="fas fa-sign-out-alt"></i> SIGN OUT
+        </button>
       </div>
-    </header>
-<!-- <div class="profile-header">
+    </nav>
+  </div>
+
+  <header>
+
+    <div class="header-background">
+      <h1><span>Welcome back, <span class='spacer'></span><br /><span class='spacer'></span><span
+            id="user-name-head"></span>!</span></h1>
+    </div>
+  </header>
+  <!-- <div class="profile-header">
   <div class="image">
     
     <img src="images/spencer-davis-1476603-unsplash-header2.png" alt="" />
     
     <h2>A Movie in the Park:<br />Kung Fu Panda</h2> -->
 
-</div>
-</div>
-    <!-- <hr /> -->
-    <div class="mx-5 card">
+  </div>
+  </div>
+  <!-- <hr /> -->
+  <div class="mx-5 card">
     <div class="card-header" id="profile-card-header">
       <h2 class="d-inline-block">Your Bucket: </h2>
       <button type="button" class="btn btn-info add-new-bucket float-right">
         ADD <i class="fas fa-tint"></i>
       </button>
-      
     </div>
-    
-      <div class="card-columns mt-5 card-body">
-        <div class="user-buckets-main">
-          <div class="buckets-listed"></div>
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button id="suggest-show-btn" class="btn btn-info" type="button" data-toggle="collapse"
+              data-target="#collapse-suggestions" aria-expanded="false" aria-controls="collapse-suggestions">
+              <i class="fas fa-tint"></i> SUGGESTIONS
+            </button>
+          </h2>
+        </div>
+
+        <div id="collapse-suggestions" class="collapse" aria-labelledby="headingOne"
+          data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="card-columns card-body" id="render-suggest">
+              <!-- render here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-columns mt-5 card-body">
+      <div class="user-buckets-main">
+        <div class="buckets-listed"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Modal -->
+  <div id="new-bucket-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title"><strong>Add a Drop <i class="fas fa-tint"></i></strong></h2>
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+        </div>
+        <div class="bucket-modal-body m-5"></div>
+        <div class="modal-footer">
+          <button id="list-Add" type="submit" class="btn btn-success" data-dismiss="modal">
+            DRIP <i class="fas fa-tint"></i>
+          </button>
         </div>
       </div>
     </div>
   </div>
-    <!-- Modal -->
-    <div id="new-bucket-modal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title"><strong>Add a Drop <i class="fas fa-tint"></i></strong></h2>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
-          <div class="bucket-modal-body m-5"></div>
-          <div class="modal-footer">
-            <button
-              id="list-Add"
-              type="submit"
-              class="btn btn-success"
-              data-dismiss="modal"
-            >
-              DRIP <i class="fas fa-tint"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- HELLO
+  <!-- HELLO
     <div id="hello"></div>
     <form>
       <input type="text" id="list-title" />
@@ -127,5 +121,7 @@
 
       <button type="submit" id="list-Add"></button>
     </form> -->
-  </body>
+
+</body>
+
 </html>
