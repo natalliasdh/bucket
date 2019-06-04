@@ -1,4 +1,6 @@
 var db = require("../models");
+const config = require("../config/config.js");
+const jwt = require("jsonwebtoken");
 
 module.exports = function(app) {
   app.post("/api/login", function(req, res) {
@@ -12,7 +14,20 @@ module.exports = function(app) {
           return res.status(401).end("Unauthorized");
         }
         // gen JWT
-        res.json({ name: dbUser.name, id: dbUser.id, token: "klasdfsd" });
+        jwt.sign(
+          { dbUser },
+          process.env.MY_SECRET,
+          { expiresIn: "24h" },
+          (err, token) => {
+            res.json({
+              name: dbUser.name,
+              id: dbUser.id,
+              token
+            });
+          }
+        );
+
+        // res.json({ name: dbUser.name, id: dbUser.id, token: "klasdfsd" });
       })
       .catch(function(err) {
         res.status(401).end();
