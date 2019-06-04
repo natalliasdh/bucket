@@ -126,8 +126,8 @@ const renderBuckets = function (userId) {
                 <p>Category: ${elem.category}</p>
                 <p>Completed: ${elem.completion}</p>
                 <p>Created on: ${dateFormat[0]}</p>
-                <button type="submit" id="complete" class="completeBtn" data-id="${elem.id}">Complete</button>
-                <button type="submit" class="deleteBtn" data-id="${elem.id}">Delete</button>
+                <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${elem.id}">Complete <i class="fas fa-check"></i> </button>
+                <button type="submit" class="deleteBtn btn btn-danger" data-id="${elem.id}">Delete <i class="fas fa-tint-slash"></i> </button>
               </div>
             </div>
           </div>
