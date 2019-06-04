@@ -1,6 +1,24 @@
 var db = require("../models");
 
 module.exports = function(app) {
+  app.post("/api/login", function(req, res) {
+    db.User.findOne({
+      where: {
+        name: req.body.name
+      }
+    })
+      .then(function(dbUser) {
+        if (!dbUser || !dbUser.validatePw(req.body.password)) {
+          return res.status(401).end("Unauthorized");
+        }
+        // gen JWT
+        res.json({ name: dbUser.name, id: dbUser.id, token: "klasdfsd" });
+      })
+      .catch(function(err) {
+        res.status(401).end();
+      });
+  });
+
   app.get("/api/users/:id", function(req, res) {
     db.User.findOne({
       where: {
@@ -81,17 +99,13 @@ module.exports = function(app) {
       });
   });
 
-
-  app.delete("/api/deleted/:id", function (req, res) {
+  app.delete("/api/deleted/:id", function(req, res) {
     db.BucketList.destroy({
-        where: {
-          id: req.params.id
-        }
-      }).then(function(result) {
-        res.json(result);
-      });
-});
-
-
-
+      where: {
+        id: req.params.id
+      }
+    }).then(function(result) {
+      res.json(result);
+    });
+  });
 };
