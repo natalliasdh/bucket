@@ -27,33 +27,33 @@ $(document).ready(function() {
   });
 
   // add suggestion
-  $(".add-suggest").on("click", function(event) {
+  $("#render-suggest").on("click", ".add-suggest", function(event) {
     event.preventDefault();
     console.log("suggest click works");
+    console.log("this", $(this).parents(".card"));
+    var idSuggest = $(this).attr("data-id");
+    console.log(idSuggest);
+    var titleInput = $(this)
+      .parent(".card-text")
+      .attr("data-title");
+    var catInput = $(this)
+      .parent(".card-text")
+      .attr("data-cat");
+    var imgInput = $(this)
+      .parent(".card-text")
+      .attr("data-img");
 
-    // var idSuggest = $(this).attr("data-id");
-    // console.log(idSuggest);
-    // var titleInput = $(".card-title-" + userId)
-    //   .val()
-    //   .trim();
-    // var catInput = $(".card-cat-" + userId)
-    //   .val()
-    //   .trim();
-    // var imgInput = $("#list-img-" + userId)
-    //   .val()
-    //   .trim();
-
-    // console.log(titleInput);
-    // var userBuck = {
-    //   title: titleInput,
-    //   category: catInput,
-    //   image: imgInput,
-    //   UserId: userId
-    // };
-    // console.log("userBucket", userBuck);
-    // $.post("/api/buckets", userBuck, function() {
-    //   window.location.href = "/profile";
-    // });
+    console.log("title input", titleInput);
+    var userBuck = {
+      title: titleInput,
+      category: catInput,
+      image: imgInput,
+      UserId: userId
+    };
+    console.log("userBucket", userBuck);
+    $.post("/api/buckets", userBuck, function() {
+      window.location.href = "/profile";
+    });
   });
 
   //
@@ -67,6 +67,7 @@ $(document).ready(function() {
   //Show suggestions
   $("#suggest-show-btn").on("click", function() {
     console.log("click suggest");
+    $("#render-suggest").empty();
     renderSuggestions(userId);
   });
 });
@@ -167,11 +168,14 @@ function renderSuggestions(id) {
             }" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">${elem.title}</h5>
-              <div class="card-text">
+              <div class="card-text" data-cat="${elem.category}" data-title="${
+          elem.title
+        }" data-img="${elem.image}">
                 <p class="card-cat">Category: ${elem.category}</p>
                 <button type="submit" class="btn btn-info add-suggest" data-id="${
                   elem.id
-                }">ADD SUGGESTED <i class="fas fa-tint"></i></button>
+                }">ADD SUGGESTED 
+                <i class="fas fa-tint"></i></button>
               </div>
             </div>
           </div>
