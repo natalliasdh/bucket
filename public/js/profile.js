@@ -1,7 +1,9 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var userId = localStorage.getItem("ID").trim();
+  var greeting = localStorage.getItem("name").trim();
+  $("#greeting").text(greeting.toUpperCase());
   renderBuckets(userId);
-  $("#list-Add").on("click", function(event) {
+  $("#list-Add").on("click", function (event) {
     event.preventDefault();
     var titleInput = $("#list-title")
       .val()
@@ -21,7 +23,7 @@ $(document).ready(function() {
       UserId: userId
     };
     console.log("userBucket", userBuck);
-    $.post("/api/buckets", userBuck, function() {
+    $.post("/api/buckets", userBuck, function () {
       window.location.href = "/profile";
     });
   });
@@ -35,7 +37,7 @@ $(document).ready(function() {
 });
 
 // render modal
-const renderModal = function() {
+const renderModal = function () {
   console.log("add new bucket");
   $("#new-bucket-modal").modal();
   document.querySelector(".bucket-modal-body").innerHTML = `
@@ -64,20 +66,20 @@ const renderModal = function() {
   `;
 };
 
-const renderBuckets = function(userId) {
+const renderBuckets = function (userId) {
   console.log("buckets rendered");
 
-  $.get("/api/users/" + userId, function(data) {
+  $.get("/api/users/" + userId, function (data) {
     console.log("users data:", data.BucketLists);
-    data.BucketLists.forEach(function(elem) {
+    data.BucketLists.forEach(function (elem) {
       const dateFormat = elem.createdAt.split("T");
-      
+
       $(".buckets-listed").append(
         `
         <div class="card">
             <img class="card-img-top" src="${
-              elem.image
-            }" alt="Card image cap" />
+        elem.image
+        }" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">${elem.title}</h5>
               <div class="card-text">
@@ -85,33 +87,57 @@ const renderBuckets = function(userId) {
                 <p>Completed: ${elem.completion}</p>
                 <p>Created on: ${dateFormat[0]}</p>
                 <button type="submit" id="complete" class="completeBtn" data-id="${elem.id}">Complete</button>
+                <button type="submit" class="deleteBtn" data-id="${elem.id}">Delete</button>
               </div>
             </div>
           </div>
         `
       );
     });
-    $(".completeBtn").on("click", function(event){
+    $(".completeBtn").on("click", function (event) {
       console.log("click works");
       event.preventDefault();
-  
-    var idComplete= $(this).attr("data-id");
-    console.log(idComplete);
-    var completeUp = {
-      completion: true
-    };
-console.log(completeUp);
-    $.ajax({
-      method: "PUT",
-      url: "/api/buckets/"+ idComplete,
-      data: completeUp
-    }).then(function(){
-      $(".buckets-listed").empty();
-      renderBuckets(userId);
+
+      var idComplete = $(this).attr("data-id");
+      console.log(idComplete);
+      var completeUp = {
+        completion: true
+      };
+      console.log(completeUp);
+      $.ajax({
+        method: "PUT",
+        url: "/api/buckets/" + idComplete,
+        data: completeUp
+      }).then(function () {
+        $(".buckets-listed").empty();
+        renderBuckets(userId);
+      });
     });
-  });
+
+
+    //Option to delete
+
+    $(".deleteBtn").on("click", function (event) {
+      console.log("click works");
+      event.preventDefault();
+      const idDelete = $(this).attr("data-id");
+     
+      //console.log(completeUp);
+      $.ajax({
+        method: "DELETE",
+        url: "/api/deleted/" + idDelete,
+      }).then(function () {
+        $(".buckets-listed").empty();
+        renderBuckets(userId);
+      });
+    });
+
+
+
+
+    
   });
 
   // document.querySelector(".buckets-listed").innerHTML = `
-  
+
 };
