@@ -1,9 +1,9 @@
-$(document).ready(function () {
+$(document).ready(function() {
   var userId = localStorage.getItem("ID").trim();
   var greeting = localStorage.getItem("name").trim();
   $("#greeting").text(greeting.toUpperCase());
   renderBuckets(userId);
-  $("#list-Add").on("click", function (event) {
+  $("#list-Add").on("click", function(event) {
     event.preventDefault();
     var titleInput = $("#list-title")
       .val()
@@ -23,7 +23,7 @@ $(document).ready(function () {
       UserId: userId
     };
     console.log("userBucket", userBuck);
-    $.post("/api/buckets", userBuck, function () {
+    $.post("/api/buckets", userBuck, function() {
       window.location.href = "/profile";
     });
   });
@@ -62,6 +62,8 @@ $(document).ready(function () {
   $(".add-new-bucket").on("click", renderModal);
   $("#log-out").on("click", function() {
     localStorage.removeItem("ID");
+    localStorage.removeItem("name");
+    localStorage.removeItem("token");
     window.location.href = "/";
   });
   var n = localStorage.getItem("ID");
@@ -75,7 +77,7 @@ $(document).ready(function () {
 });
 
 // render modal
-const renderModal = function () {
+const renderModal = function() {
   console.log("add new bucket");
   $("#new-bucket-modal").modal();
   document.querySelector(".bucket-modal-body").innerHTML = `
@@ -104,13 +106,13 @@ const renderModal = function () {
   `;
 };
 
-const renderBuckets = function (userId) {
+const renderBuckets = function(userId) {
   console.log("buckets rendered");
 
-  $.get("/api/users/" + userId, function (data) {
+  $.get("/api/users/" + userId, function(data) {
     console.log("users data:", data.BucketLists);
     $("#user-name-head").empty();
-    $("#user-name-head").append(data.name);
+    $("#user-name-head").append(data.name.toUpperCase());
     data.BucketLists.forEach(function(elem) {
       const dateFormat = elem.createdAt.split("T");
 
@@ -118,23 +120,27 @@ const renderBuckets = function (userId) {
         `
         <div class="card">
             <img class="card-img-top" src="${
-        elem.image
-        }" alt="Card image cap" />
+              elem.image
+            }" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">${elem.title}</h5>
               <div class="card-text">
                 <p>Category: ${elem.category}</p>
                 <p>Completed: ${elem.completion}</p>
                 <p>Created on: ${dateFormat[0]}</p>
-                <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${elem.id}">Complete <i class="fas fa-check"></i> </button>
-                <button type="submit" class="deleteBtn btn btn-danger" data-id="${elem.id}">Delete <i class="fas fa-tint-slash"></i> </button>
+                <button type="submit" id="complete" class="completeBtn" data-id="${
+                  elem.id
+                }">Complete</button>
+                <button type="submit" class="deleteBtn" data-id="${
+                  elem.id
+                }">Delete</button>
               </div>
             </div>
           </div>
         `
       );
     });
-    $(".completeBtn").on("click", function (event) {
+    $(".completeBtn").on("click", function(event) {
       console.log("click works");
       event.preventDefault();
 
@@ -148,38 +154,31 @@ const renderBuckets = function (userId) {
         method: "PUT",
         url: "/api/buckets/" + idComplete,
         data: completeUp
-      }).then(function () {
+      }).then(function() {
         $(".buckets-listed").empty();
         renderBuckets(userId);
       });
     });
-
 
     //Option to delete
 
-    $(".deleteBtn").on("click", function (event) {
+    $(".deleteBtn").on("click", function(event) {
       console.log("click works");
       event.preventDefault();
       const idDelete = $(this).attr("data-id");
-     
+
       //console.log(completeUp);
       $.ajax({
         method: "DELETE",
-        url: "/api/deleted/" + idDelete,
-      }).then(function () {
+        url: "/api/deleted/" + idDelete
+      }).then(function() {
         $(".buckets-listed").empty();
         renderBuckets(userId);
       });
     });
-
-
-
-
-    
   });
 
   // document.querySelector(".buckets-listed").innerHTML = `
-
 };
 
 function renderSuggestions(id) {

@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 module.exports = function(sequelize, DataTypes) {
   const User = sequelize.define("User", {
     name: {
@@ -7,7 +8,6 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING,
       allowNull: false
-     
     },
     password: {
       type: DataTypes.STRING,
@@ -31,5 +31,16 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
+
+  User.beforeCreate(function(user, options) {
+    return bcrypt.hash(user.password, 10).then(function(hash) {
+      user.password = hash;
+    });
+  });
+
+  User.prototype.validatePw = function(password) {
+    return bcrypt.compareSync(password, this.password);
+  };
+
   return User;
 };
