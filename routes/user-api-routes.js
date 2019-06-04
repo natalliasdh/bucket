@@ -80,4 +80,18 @@ module.exports = function(app) {
         res.json({ error: err });
       });
   });
+
+
+  app.delete("/api/deleted/:id", function (req, res) {
+    db.BucketList.destroy({
+        where: {
+          id: req.params.id
+        }
+      }).then(function(result) {
+        res.json(result);
+      });
+});
+
+
+
 };
