@@ -26,12 +26,50 @@ $(document).ready(function() {
     });
   });
 
-  $(".add-new-bucket").on("click", renderModal);
+  // add suggestion
+  $("#render-suggest").on("click", ".add-suggest", function(event) {
+    event.preventDefault();
+    console.log("suggest click works");
+    console.log("this", $(this).parents(".card"));
+    var idSuggest = $(this).attr("data-id");
+    console.log(idSuggest);
+    var titleInput = $(this)
+      .parent(".card-text")
+      .attr("data-title");
+    var catInput = $(this)
+      .parent(".card-text")
+      .attr("data-cat");
+    var imgInput = $(this)
+      .parent(".card-text")
+      .attr("data-img");
 
+    console.log("title input", titleInput);
+    var userBuck = {
+      title: titleInput,
+      category: catInput,
+      image: imgInput,
+      UserId: userId
+    };
+    console.log("userBucket", userBuck);
+    $.post("/api/buckets", userBuck, function() {
+      window.location.href = "/profile";
+    });
+  });
+
+  //
+  $(".add-new-bucket").on("click", renderModal);
+  $("#log-out").on("click", function() {
+    localStorage.removeItem("ID");
+    window.location.href = "/";
+  });
   var n = localStorage.getItem("ID");
-  $("#hello").append("helllllooooooWS");
-  console.log("hello");
-  console.log(n);
+
+  //Show suggestions
+  $("#suggest-show-btn").on("click", function() {
+    console.log("click suggest");
+    $("#render-suggest").empty();
+    renderSuggestions(userId);
+  });
 });
 
 // render modal
@@ -69,9 +107,11 @@ const renderBuckets = function(userId) {
 
   $.get("/api/users/" + userId, function(data) {
     console.log("users data:", data.BucketLists);
+    $("#user-name-head").empty();
+    $("#user-name-head").append(data.name);
     data.BucketLists.forEach(function(elem) {
       const dateFormat = elem.createdAt.split("T");
-      
+
       $(".buckets-listed").append(
         `
         <div class="card">
@@ -84,34 +124,63 @@ const renderBuckets = function(userId) {
                 <p>Category: ${elem.category}</p>
                 <p>Completed: ${elem.completion}</p>
                 <p>Created on: ${dateFormat[0]}</p>
-                <button type="submit" id="complete" class="completeBtn" data-id="${elem.id}">Complete</button>
+                <button type="submit" id="complete" class="completeBtn" data-id="${
+                  elem.id
+                }">Complete</button>
               </div>
             </div>
           </div>
         `
       );
     });
-    $(".completeBtn").on("click", function(event){
+    $(".completeBtn").on("click", function(event) {
       console.log("click works");
       event.preventDefault();
-  
-    var idComplete= $(this).attr("data-id");
-    console.log(idComplete);
-    var completeUp = {
-      completion: true
-    };
-console.log(completeUp);
-    $.ajax({
-      method: "PUT",
-      url: "/api/buckets/"+ idComplete,
-      data: completeUp
-    }).then(function(){
-      $(".buckets-listed").empty();
-      renderBuckets(userId);
+
+      var idComplete = $(this).attr("data-id");
+      console.log(idComplete);
+      var completeUp = {
+        completion: true
+      };
+      console.log(completeUp);
+      $.ajax({
+        method: "PUT",
+        url: "/api/buckets/" + idComplete,
+        data: completeUp
+      }).then(function() {
+        $(".buckets-listed").empty();
+        renderBuckets(userId);
+      });
     });
   });
-  });
-
-  // document.querySelector(".buckets-listed").innerHTML = `
-  
 };
+
+function renderSuggestions(id) {
+  console.log("inside render suggest");
+  $.get("/api/suggest/", function(data) {
+    console.log("suggest data:", data);
+    data.forEach(function(elem) {
+      $("#render-suggest").append(
+        `
+        <div class="card">
+            <img class="card-img-top" src="${
+              elem.image
+            }" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">${elem.title}</h5>
+              <div class="card-text" data-cat="${elem.category}" data-title="${
+          elem.title
+        }" data-img="${elem.image}">
+                <p class="card-cat">Category: ${elem.category}</p>
+                <button type="submit" class="btn btn-info add-suggest" data-id="${
+                  elem.id
+                }">ADD SUGGESTED 
+                <i class="fas fa-tint"></i></button>
+              </div>
+            </div>
+          </div>
+        `
+      );
+    });
+  });
+}
