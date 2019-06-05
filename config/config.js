@@ -16,11 +16,7 @@ module.exports = {
     secret: process.env.MY_SECRET
   },
   production: {
-    username: "root",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
-    dialect: "mysql",
+    use_env_variable: "JAWSDB_URL",
     secret: process.env.MY_SECRET
   }
 };
