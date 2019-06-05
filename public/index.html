@@ -28,10 +28,13 @@
       integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
       crossorigin="anonymous"
     />
-
     <link
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      href="https://pro.fontawesome.com/releases/v5.8.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
       crossorigin="anonymous"
     />
@@ -68,9 +71,19 @@
           />
           <strong> [/bʌkət/] </strong>
         </a>
-        <div>
-          <button type="button" class="btn btn-primary">
-            <i class="fas fa-user-plus"></i> SIGN UP
+        <div id="nav-sign-up">
+          <a class="nav-link" href="#form-sign-up">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-user-plus"></i> SIGN UP
+            </button>
+          </a>
+          <a class="nav-link" href="http://localhost:8080/profile">
+          <button type="button" class="btn btn-success form-inline"><i class="fas fa-user"></i> PROFILE </button>
+        </a>
+        </div>
+        <div id="nav-sign-out">
+          <button id="log-out" type="button" class="btn btn-danger">
+            <i class="fas fa-sign-out-alt"></i> SIGN OUT
           </button>
         </div>
       </nav>
@@ -80,7 +93,7 @@
       class="carousel slide"
       data-ride="carousel"
     >
-      <div class="carousel-content rounded">
+      <div id="carousel-cred" class="carousel-content rounded">
         <div class="input-group mt-3 p-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default"
@@ -96,7 +109,6 @@
             id="nameExist"
           />
         </div>
-        <div></div>
         <div class="input-group  p-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default"
@@ -175,31 +187,29 @@
             <li
               class="col-sm-4 float-left d-flex flex-column align-items-center"
             >
-              <a href="" class="set-goals"
-                ><i class="far fa-check-square fa-2x"></i
-              ></a>
+              <a href="" class="set-goals"><i class="fas fa-tint fa-2x"></i></a>
               <h4 class="text-center">
-                Set your goals and get tips as you go
+                Add your goals as drops to your bucket!
               </h4>
             </li>
             <li
               class="col-sm-4 float-left d-flex flex-column align-items-center"
             >
               <a href="" class="set-goals"
-                ><i class="fas fa-users fa-2x"></i
+                ><i class="fas fa-fill-drip fa-2x"></i
               ></a>
               <h4 class="text-center">
-                Get inspired with people sharing the same goals
+                Empty your bucket over time by completing your goals!
               </h4>
             </li>
             <li
               class="col-sm-4 float-left d-flex flex-column align-items-center"
             >
               <a href="" class="set-goals"
-                ><i class="fas fa-tasks fa-2x"></i
+                ><i class="fas fa-user-check fa-2x"></i
               ></a>
               <h4 class="text-center">
-                See how others have achieved their goals
+                Add more drops or look back on all the goals you've achieved!
               </h4>
             </li>
           </ul>
@@ -313,77 +323,40 @@
         </div>
       </form>
 
-      <div class="card-columns mt-5">
-        <div class="suggest-buckets-main">
-          <div class="card">
-            <img class="card-img-top" src="#" alt="Card image cap" />
-            <div class="card-body">
-              <h5 class="card-title">Card title that wraps to a new line</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="#" alt="Card image cap" />
-            <div class="card-body">
-              <h5 class="card-title">Card title that wraps to a new line</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="#" alt="Card image cap" />
-            <div class="card-body">
-              <h5 class="card-title">Card title that wraps to a new line</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="#" alt="Card image cap" />
-            <div class="card-body">
-              <h5 class="card-title">Card title that wraps to a new line</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="#" alt="Card image cap" />
-            <div class="card-body">
-              <h5 class="card-title">Card title that wraps to a new line</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="#" alt="Card image cap" />
-            <div class="card-body">
-              <h5 class="card-title">Card title that wraps to a new line</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- container ends here -->
+    </div>
+    <!-- <style>
+      .footer {
+        position: static;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: red;
+        color: white;
+        text-align: center;
+      }
+      </style> -->
+
+    <div class="footer p-4">
+      <div class="text-center">
+        <strong
+          ><h5>
+            Made with lots of <i class="fas fa-heart" id="heart"></i> utilizing
+            these technologies:
+          </h5></strong
+        >
+      </div>
+      <div class="text-center">
+        <pre
+          class="tab"
+        ><i class="fab fa-github fa-3x">   </i><i class="fab fa-slack fa-3x">   </i><i class="fab fa-js-square fa-3x"></i>   <i class="fab fa-node fa-3x"></i></pre>
+      </div>
+      <div class="text-center" id="copyright">
+        <p>
+          Copyright <i class="far fa-copyright"></i> 2019 by Enzo, Brandon,
+          Natalia, Oscar
+        </p>
+      </div>
     </div>
     <script src="js/user.js"></script>
   </body>
