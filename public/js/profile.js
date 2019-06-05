@@ -127,7 +127,47 @@ const renderModal = function() {
 
 const renderBuckets = function(userId) {
   console.log("buckets rendered");
+ //start of progress bar functions
+ let completeNumber;
+ let totalNumber;
+ let progress;
+ var currentUserId = localStorage.getItem("ID");
 
+function score() {
+ $.get("/api/scores/" + currentUserId, function (data) {
+     //console.log(data.count);
+     completeNumber = data.count;
+     console.log("complete", +completeNumber);
+ }).then(total);
+
+}
+ function total() {
+     $.get("/api/percents/" + currentUserId, function (data) {
+         // console.log(data.count);
+         totalNumber = data.count;
+         console.log("total", +totalNumber);
+     }).then(countPercent);
+
+ };
+
+ function countPercent() {
+     console.log("complete+++", +completeNumber);
+     console.log("total+++", +totalNumber);
+     if(completeNumber>0) {
+     progress = Math.floor(completeNumber *100/ totalNumber);}
+     else {progress=0;}
+     if(totalNumber==0) {
+       $(".progress").attr("style","visibility:hidden");}
+       else { $(".progress").attr("style","height: 15px; width: 70%; margin:5px auto; background-color:rgb(207, 201, 201); visibility:visible;text-align:center;");}
+       
+
+     console.log("progress", +progress);
+     $(".progress-bar").attr("aria-valuenow",progress);
+     $(".progress-bar").attr("style",`width:${progress}%; padding:3px;`);
+     $(".progress-bar").text(progress+"% completed");
+ };
+ score();
+//end of progress bar functions
   $.get("/api/users/" + userId, function(data) {
     console.log("users data:", data.BucketLists);
     $("#user-name-head").empty();
@@ -178,7 +218,7 @@ const renderBuckets = function(userId) {
         renderBuckets(userId);
       });
     });
-
+    score();
     //Option to delete
 
     $(".deleteBtn").on("click", function(event) {
