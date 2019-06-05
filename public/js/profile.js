@@ -189,7 +189,7 @@ const renderBuckets = function(userId) {
                 <h5 class="card-title">${elem.title}</h5>
                 <div class="card-text">
                   <p>Category: ${elem.category}</p>
-                  <p>Complete</p>
+                  <p>Complete <i class="fas fa-check"></i></p>
                   <p>Created on: ${dateFormat[0]}</p>
                   <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${
                     elem.id
@@ -213,7 +213,7 @@ const renderBuckets = function(userId) {
                 <h5 class="card-title">${elem.title}</h5>
                 <div class="card-text">
                   <p>Category: ${elem.category}</p>
-                  <p>Not Complete yet</p>
+                  <p>Not Complete <i class="fas fa-hourglass-half"></i></p>
                   <p>Created on: ${dateFormat[0]}</p>
                   <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${
                     elem.id
