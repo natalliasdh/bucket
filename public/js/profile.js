@@ -127,77 +127,129 @@ const renderModal = function() {
 
 const renderBuckets = function(userId) {
   console.log("buckets rendered");
- //start of progress bar functions
- let completeNumber;
- let totalNumber;
- let progress;
- var currentUserId = localStorage.getItem("ID");
+  //start of progress bar functions
+  let completeNumber;
+  let totalNumber;
+  let progress;
+  var currentUserId = localStorage.getItem("ID");
 
-function score() {
- $.get("/api/scores/" + currentUserId, function (data) {
-     //console.log(data.count);
-     completeNumber = data.count;
-     console.log("complete", +completeNumber);
- }).then(total);
+  function score() {
+    $.get("/api/scores/" + currentUserId, function(data) {
+      //console.log(data.count);
+      completeNumber = data.count;
+      console.log("complete", +completeNumber);
+    }).then(total);
+  }
+  function total() {
+    $.get("/api/percents/" + currentUserId, function(data) {
+      // console.log(data.count);
+      totalNumber = data.count;
+      console.log("total", +totalNumber);
+    }).then(countPercent);
+  }
 
-}
- function total() {
-     $.get("/api/percents/" + currentUserId, function (data) {
-         // console.log(data.count);
-         totalNumber = data.count;
-         console.log("total", +totalNumber);
-     }).then(countPercent);
+  function countPercent() {
+    console.log("complete+++", +completeNumber);
+    console.log("total+++", +totalNumber);
+    if (completeNumber > 0) {
+      progress = Math.floor((completeNumber * 100) / totalNumber);
+    } else {
+      progress = 0;
+    }
+    if (totalNumber == 0) {
+      $(".progress").attr("style", "visibility:hidden");
+    } else {
+      $(".progress").attr(
+        "style",
+        "height: 15px; width: 70%; margin:5px auto; background-color:rgb(207, 201, 201); visibility:visible;text-align:center;"
+      );
+    }
 
- };
-
- function countPercent() {
-     console.log("complete+++", +completeNumber);
-     console.log("total+++", +totalNumber);
-     if(completeNumber>0) {
-     progress = Math.floor(completeNumber *100/ totalNumber);}
-     else {progress=0;}
-     if(totalNumber==0) {
-       $(".progress").attr("style","visibility:hidden");}
-       else { $(".progress").attr("style","height: 15px; width: 70%; margin:5px auto; background-color:rgb(207, 201, 201); visibility:visible;text-align:center;");}
-       
-
-     console.log("progress", +progress);
-     $(".progress-bar").attr("aria-valuenow",progress);
-     $(".progress-bar").attr("style",`width:${progress}%; padding:3px;`);
-     $(".progress-bar").text(progress+"% completed");
- };
- score();
-//end of progress bar functions
+    console.log("progress", +progress);
+    $(".progress-bar").attr("aria-valuenow", progress);
+    $(".progress-bar").attr("style", `width:${progress}%; padding:3px;`);
+    $(".progress-bar").text(progress + "% completed");
+  }
+  score();
+  //end of progress bar functions
   $.get("/api/users/" + userId, function(data) {
     console.log("users data:", data.BucketLists);
     $("#user-name-head").empty();
     $("#user-name-head").append(data.name.toUpperCase());
     data.BucketLists.forEach(function(elem) {
       const dateFormat = elem.createdAt.split("T");
-
-      $(".buckets-listed").append(
-        `
-        <div class="card">
-            <img class="card-img-top" src="${
-              elem.image
-            }" alt="Card image cap" />
-            <div class="card-body">
-              <h5 class="card-title">${elem.title}</h5>
-              <div class="card-text">
-                <p>Category: ${elem.category}</p>
-                <p>Completed: ${elem.completion}</p>
-                <p>Created on: ${dateFormat[0]}</p>
-                <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${
-                  elem.id
-                }">Complete <i class="fas fa-check"></i></button>
-                <button type="submit" class="deleteBtn btn btn-danger" data-id="${
-                  elem.id
-                }">Delete <i class="fas fa-tint-slash"></i> </button>
+      if (elem.completion === true) {
+        $(".buckets-listed").append(
+          `
+          <div class="card" style="opacity:0.5">
+              <img class="card-img-top" src="${
+                elem.image
+              }" alt="Card image cap" />
+              <div class="card-body">
+                <h5 class="card-title">${elem.title}</h5>
+                <div class="card-text">
+                  <p>Category: ${elem.category}</p>
+                  <p>Complete</p>
+                  <p>Created on: ${dateFormat[0]}</p>
+                  <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${
+                    elem.id
+                  }">Complete <i class="fas fa-check"></i></button>
+                  <button type="submit" class="deleteBtn btn btn-danger" data-id="${
+                    elem.id
+                  }">Delete <i class="fas fa-tint-slash"></i> </button>
+                </div>
               </div>
             </div>
-          </div>
-        `
-      );
+          `
+        );
+      } else {
+        $(".buckets-listed").append(
+          `
+          <div class="card">
+              <img class="card-img-top" src="${
+                elem.image
+              }" alt="Card image cap" />
+              <div class="card-body">
+                <h5 class="card-title">${elem.title}</h5>
+                <div class="card-text">
+                  <p>Category: ${elem.category}</p>
+                  <p>Not Complete yet</p>
+                  <p>Created on: ${dateFormat[0]}</p>
+                  <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${
+                    elem.id
+                  }">Complete <i class="fas fa-check"></i></button>
+                  <button type="submit" class="deleteBtn btn btn-danger" data-id="${
+                    elem.id
+                  }">Delete <i class="fas fa-tint-slash"></i> </button>
+                </div>
+              </div>
+            </div>
+          `
+        );
+      }
+      // $(".buckets-listed").append(
+      //   `
+      //   <div class="card">
+      //       <img class="card-img-top" src="${
+      //         elem.image
+      //       }" alt="Card image cap" />
+      //       <div class="card-body">
+      //         <h5 class="card-title">${elem.title}</h5>
+      //         <div class="card-text">
+      //           <p>Category: ${elem.category}</p>
+      //           <p>Completed: ${elem.completion}</p>
+      //           <p>Created on: ${dateFormat[0]}</p>
+      //           <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${
+      //             elem.id
+      //           }">Complete <i class="fas fa-check"></i></button>
+      //           <button type="submit" class="deleteBtn btn btn-danger" data-id="${
+      //             elem.id
+      //           }">Delete <i class="fas fa-tint-slash"></i> </button>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   `
+      // );
     });
     $(".completeBtn").on("click", function(event) {
       console.log("click works");
