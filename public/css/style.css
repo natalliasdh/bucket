@@ -31,3 +31,65 @@ body {
 ul {
   list-style-type: none;
 }
+
+.header-background {
+  background: url(../images/spencer-davis-1476603-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  opacity: 0.75;
+}
+/* header {
+  min-height: 400px;
+
+} */
+h1 span {
+  color: white;
+  font: bold 24px/45px Helvetica, Sans-Serif;
+  letter-spacing: -1px;
+  background: rgb(0, 0, 0); /* fallback color */
+  /* background: rgba(0, 0, 0, 0.7); */
+  padding: 10px;
+  opacity: 0.9;
+}
+h1 span.spacer {
+  padding: 0 5px;
+}
+.header-text {
+  z-index: 10;
+}
+
+.profile-card-header {
+  opacity: 0.5;
+}
+
+#render-suggest {
+  background: rgb(100, 100, 100, 0.7);
+}
+
+.footer {
+  position: static;
+  background: lightgrey;
+  /* background-image: url("../images/footer-background-011.png"); */
+  opacity:0.9;
+  filter:Alpha(opacity=60);
+  margin-top: 2em;
+  float: left;
+  width: 100%;
+  height: 175px;
+  clear:both;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.0em;}
+
+  #copyright {
+    font-size: 15px;
+  }
+
+  #heart {
+    color: red;
+  }
+
+  #dropmodal {
+    color: #17a2b8;
+  }
