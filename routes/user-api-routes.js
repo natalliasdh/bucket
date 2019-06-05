@@ -142,6 +142,30 @@ module.exports = function(app) {
       res.json(result);
     });
   });
+
+  app.get("/api/scores/:id", function(req, res) {
+    db.BucketList.findAndCountAll({
+            where: {
+        UserId: req.params.id,
+        completion:true
+      }
+    }).then(function(result) {
+      res.json(result);
+    });
+  });
+
+  app.get("/api/percents/:id", function(req, res) {
+    db.BucketList.findAndCountAll({
+            where: {
+        UserId: req.params.id,
+        
+      }
+    }).then(function(result) {
+      res.json(result);
+    });
+  });
+
+
 };
 
 // Verify Token
