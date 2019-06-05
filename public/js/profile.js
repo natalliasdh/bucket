@@ -224,29 +224,6 @@ const renderBuckets = function(userId) {
           `
         );
       }
-      // $(".buckets-listed").append(
-      //   `
-      //   <div class="card">
-      //       <img class="card-img-top" src="${
-      //         elem.image
-      //       }" alt="Card image cap" />
-      //       <div class="card-body">
-      //         <h5 class="card-title">${elem.title}</h5>
-      //         <div class="card-text">
-      //           <p>Category: ${elem.category}</p>
-      //           <p>Completed: ${elem.completion}</p>
-      //           <p>Created on: ${dateFormat[0]}</p>
-      //           <button type="submit" id="complete" class="completeBtn btn btn-success" data-id="${
-      //             elem.id
-      //           }">Complete <i class="fas fa-check"></i></button>
-      //           <button type="submit" class="deleteBtn btn btn-danger" data-id="${
-      //             elem.id
-      //           }">Delete <i class="fas fa-tint-slash"></i> </button>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   `
-      // );
     });
     $(".completeBtn").on("click", function(event) {
       console.log("click works");
