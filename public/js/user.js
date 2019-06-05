@@ -58,6 +58,7 @@ $(document).ready(function() {
     var userAuth = {
       name: nameExist,
       password: passwordExist
+      
     };
     console.log("userAuth", userAuth);
     $.post("/api/login", userAuth, function() {

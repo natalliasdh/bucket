@@ -1,5 +1,4 @@
 var db = require("../models");
-const config = require("../config/config.js");
 const jwt = require("jsonwebtoken");
 
 module.exports = function(app) {
@@ -18,7 +17,7 @@ module.exports = function(app) {
           { dbUser },
           process.env.MY_SECRET,
           { expiresIn: "24h" },
-          (err, token) => {
+          function(err, token) {
             res.json({
               name: dbUser.name,
               id: dbUser.id,
@@ -26,8 +25,6 @@ module.exports = function(app) {
             });
           }
         );
-
-        // res.json({ name: dbUser.name, id: dbUser.id, token: "klasdfsd" });
       })
       .catch(function(err) {
         res.status(401).end();
@@ -80,20 +77,26 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/buckets", function(req, res) {
-    console.log(req.body);
-    db.BucketList.create({
-      title: req.body.title,
-      category: req.body.category,
-      image: req.body.image,
-      UserId: req.body.UserId
-    })
-      .then(function(result) {
-        res.json(result);
-      })
-      .catch(function(err) {
-        res.json({ error: err });
-      });
+  app.post("/api/buckets", verifyToken, function(req, res) {
+    console.log("req.body", req.body);
+    jwt.verify(req.token, process.env.MY_SECRET, (err, authData) => {
+      if (err) {
+        res.sendStatus(403);
+      } else {
+        db.BucketList.create({
+          title: req.body.title,
+          category: req.body.category,
+          image: req.body.image,
+          UserId: req.body.UserId
+        })
+          .then(function(result) {
+            res.json(result);
+          })
+          .catch(function(err) {
+            res.json({ error: err });
+          });
+      }
+    });
   });
 
   app.put("/api/buckets/:id", function(req, res) {
@@ -124,3 +127,25 @@ module.exports = function(app) {
     });
   });
 };
+
+// Verify Token
+function verifyToken(req, res, next) {
+  console.log("inside verify token", req.headers);
+  // Get auth header value
+  const bearerHeader = req.headers["authorization"];
+  // Check if bearer is undefined
+  console.log(bearerHeader);
+  if (typeof bearerHeader !== "undefined") {
+    // Split at the space
+    const bearer = bearerHeader.split(" ");
+    // Get token from array
+    const bearerToken = bearer[1];
+    // Set the token
+    req.token = bearerToken;
+    // Next middleware
+    next();
+  } else {
+    // Forbidden
+    res.sendStatus(403);
+  }
+}
