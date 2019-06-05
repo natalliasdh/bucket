@@ -95,9 +95,9 @@ h1 span.spacer {
   }
 
   #profilebutton {
-    float: right !important;
+    /* float: right !important;
     right: 0;
     margin-left: 20%;
     position: relative;
-    margin-left: 71%;
+    margin-left: 71%; */
   }
