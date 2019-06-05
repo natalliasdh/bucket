@@ -72,9 +72,25 @@ module.exports = function(app) {
       email: req.body.email,
       password: req.body.password,
       location: req.body.location
-    }).then(function(result) {
-      res.json(result);
-    });
+    })
+      .then(function(dbUser) {
+        // gen JWT
+        jwt.sign(
+          { dbUser },
+          process.env.MY_SECRET,
+          { expiresIn: "24h" },
+          function(err, token) {
+            res.json({
+              name: dbUser.name,
+              id: dbUser.id,
+              token
+            });
+          }
+        );
+      })
+      .catch(function(err) {
+        res.status(401).end();
+      });
   });
 
   app.post("/api/buckets", verifyToken, function(req, res) {
