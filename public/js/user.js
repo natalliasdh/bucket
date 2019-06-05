@@ -27,7 +27,11 @@ $(document).ready(function() {
     });
 
     function addUser() {
-      $.post("/api/users", userUp, function() {}).then(getId);
+      $.post("/api/users", userUp, function() {}).then(function(data) {
+        console.log("add user and store token", data.token);
+        localStorage.setItem("token", data.token);
+        getId();
+      });
     }
 
     function getId() {
@@ -37,6 +41,7 @@ $(document).ready(function() {
         nameUser = data.name;
         localStorage.setItem("ID", data.id);
         localStorage.setItem("name", data.name);
+
         console.log(localStorage.getItem("ID"));
 
         //console.log(data);

@@ -28,7 +28,10 @@
       integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.0/css/all.css">
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.8.0/css/all.css"
+    />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -68,7 +71,7 @@
           />
           <strong> [/bʌkət/] </strong>
         </a>
-        <div class="btn-group">
+        <div id="nav-sign-up">
           <a class="nav-link" href="#form-sign-up">
             <button class="btn btn-primary" type="button">
               <i class="fas fa-user-plus"></i> SIGN UP
@@ -78,6 +81,11 @@
           <button type="button" class="btn btn-success form-inline"><i class="fas fa-user"></i> PROFILE </button>
         </a>
         </div>
+        <div id="nav-sign-out">
+          <button id="log-out" type="button" class="btn btn-danger">
+            <i class="fas fa-sign-out-alt"></i> SIGN OUT
+          </button>
+        </div>
       </nav>
     </div>
     <div
@@ -85,7 +93,7 @@
       class="carousel slide"
       data-ride="carousel"
     >
-      <div class="carousel-content rounded">
+      <div id="carousel-cred" class="carousel-content rounded">
         <div class="input-group mt-3 p-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default"
@@ -315,7 +323,6 @@
         </div>
       </form>
 
-
       <!-- container ends here -->
     </div>
     <!-- <style>
@@ -329,19 +336,28 @@
         text-align: center;
       }
       </style> -->
-      
-      <div class="footer p-4" >
-        
-        <div class="text-center">
-          <strong><h5>Made with lots of <i class="fas fa-heart" id="heart"></i> utilizing these technologies: </h5></strong>
-        </div>
-        <div class="text-center">
-            <pre class="tab"><i class="fab fa-github fa-3x">   </i><i class="fab fa-slack fa-3x">   </i><i class="fab fa-js-square fa-3x"></i>   <i class="fab fa-node fa-3x"></i></pre>
-        </div>
-        <div class="text-center" id="copyright">
-            <p> Copyright <i class="far fa-copyright"></i> 2019 by Enzo, Brandon, Natalia, Oscar </p>
-        </div>
+
+    <div class="footer p-4">
+      <div class="text-center">
+        <strong
+          ><h5>
+            Made with lots of <i class="fas fa-heart" id="heart"></i> utilizing
+            these technologies:
+          </h5></strong
+        >
       </div>
+      <div class="text-center">
+        <pre
+          class="tab"
+        ><i class="fab fa-github fa-3x">   </i><i class="fab fa-slack fa-3x">   </i><i class="fab fa-js-square fa-3x"></i>   <i class="fab fa-node fa-3x"></i></pre>
+      </div>
+      <div class="text-center" id="copyright">
+        <p>
+          Copyright <i class="far fa-copyright"></i> 2019 by Enzo, Brandon,
+          Natalia, Oscar
+        </p>
+      </div>
+    </div>
     <script src="js/user.js"></script>
   </body>
 </html>

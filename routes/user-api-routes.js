@@ -1,4 +1,5 @@
 var db = require("../models");
+const jwt = require("jsonwebtoken");
 
 module.exports = function(app) {
   app.post("/api/login", function(req, res) {
@@ -12,7 +13,18 @@ module.exports = function(app) {
           return res.status(401).end("Unauthorized");
         }
         // gen JWT
-        res.json({ name: dbUser.name, id: dbUser.id, token: "klasdfsd" });
+        jwt.sign(
+          { dbUser },
+          process.env.MY_SECRET,
+          { expiresIn: "24h" },
+          function(err, token) {
+            res.json({
+              name: dbUser.name,
+              id: dbUser.id,
+              token
+            });
+          }
+        );
       })
       .catch(function(err) {
         res.status(401).end();
@@ -60,25 +72,47 @@ module.exports = function(app) {
       email: req.body.email,
       password: req.body.password,
       location: req.body.location
-    }).then(function(result) {
-      res.json(result);
-    });
-  });
-
-  app.post("/api/buckets", function(req, res) {
-    console.log(req.body);
-    db.BucketList.create({
-      title: req.body.title,
-      category: req.body.category,
-      image: req.body.image,
-      UserId: req.body.UserId
     })
-      .then(function(result) {
-        res.json(result);
+      .then(function(dbUser) {
+        // gen JWT
+        jwt.sign(
+          { dbUser },
+          process.env.MY_SECRET,
+          { expiresIn: "24h" },
+          function(err, token) {
+            res.json({
+              name: dbUser.name,
+              id: dbUser.id,
+              token
+            });
+          }
+        );
       })
       .catch(function(err) {
-        res.json({ error: err });
+        res.status(401).end();
       });
+  });
+
+  app.post("/api/buckets", verifyToken, function(req, res) {
+    console.log("req.body", req.body);
+    jwt.verify(req.token, process.env.MY_SECRET, (err, authData) => {
+      if (err) {
+        res.sendStatus(403);
+      } else {
+        db.BucketList.create({
+          title: req.body.title,
+          category: req.body.category,
+          image: req.body.image,
+          UserId: req.body.UserId
+        })
+          .then(function(result) {
+            res.json(result);
+          })
+          .catch(function(err) {
+            res.json({ error: err });
+          });
+      }
+    });
   });
 
   app.put("/api/buckets/:id", function(req, res) {
@@ -109,3 +143,25 @@ module.exports = function(app) {
     });
   });
 };
+
+// Verify Token
+function verifyToken(req, res, next) {
+  console.log("inside verify token", req.headers);
+  // Get auth header value
+  const bearerHeader = req.headers["authorization"];
+  // Check if bearer is undefined
+  console.log(bearerHeader);
+  if (typeof bearerHeader !== "undefined") {
+    // Split at the space
+    const bearer = bearerHeader.split(" ");
+    // Get token from array
+    const bearerToken = bearer[1];
+    // Set the token
+    req.token = bearerToken;
+    // Next middleware
+    next();
+  } else {
+    // Forbidden
+    res.sendStatus(403);
+  }
+}

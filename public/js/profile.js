@@ -23,8 +23,17 @@ $(document).ready(function() {
       UserId: userId
     };
     console.log("userBucket", userBuck);
-    $.post("/api/buckets", userBuck, function() {
-      window.location.href = "/profile";
+    $.ajax({
+      url: "/api/buckets",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      },
+      method: "POST",
+      data: userBuck,
+      success: function(data) {
+        console.log("succes: " + data);
+        window.location.href = "/profile";
+      }
     });
   });
 
@@ -50,11 +59,21 @@ $(document).ready(function() {
       title: titleInput,
       category: catInput,
       image: imgInput,
-      UserId: userId
+      UserId: userId,
+      token: localStorage.getItem("token")
     };
-    console.log("userBucket", userBuck);
-    $.post("/api/buckets", userBuck, function() {
-      window.location.href = "/profile";
+    console.log("userBucket", userBuck.token, userBuck);
+    $.ajax({
+      url: "/api/buckets",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      },
+      method: "POST",
+      data: userBuck,
+      success: function(data) {
+        console.log("succes: " + data);
+        window.location.href = "/profile";
+      }
     });
   });
 
