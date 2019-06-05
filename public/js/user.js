@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     $.get("/api/users", function(data) {
       for (let i = 0; i < data.length; i++) {
-        if (data[i].name == nameInput.toLowerCase()) {
+        if (data[i].name.toLowerCase() == nameInput.toLowerCase()) {
           console.log("The user with this login already exists!");
           return false;
         }
