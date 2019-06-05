@@ -13,7 +13,9 @@ $(document).ready(function() {
     $("#nav-sign-up").hide();
     $("#carousel-cred").hide();
     $("#nav-sign-out").show();
+    $("#profilebutton").show();
   } else {
+    $("#profilebutton").hide();
     $("#nav-sign-out").hide();
     $("#nav-sign-up").show();
   }

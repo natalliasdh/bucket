@@ -93,3 +93,11 @@ h1 span.spacer {
   #dropmodal {
     color: #17a2b8;
   }
+
+  #profilebutton {
+    /* float: right !important;
+    right: 0;
+    margin-left: 20%;
+    position: relative;
+    margin-left: 71%; */
+  }
