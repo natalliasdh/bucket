@@ -1,3 +1,9 @@
+$.ajaxSetup({
+  headers: {
+    Authorization: "Bearer " + localStorage.getItem("token")
+  }
+});
+
 $(document).ready(function() {
   var userId = localStorage.getItem("ID").trim();
   var greeting = localStorage.getItem("name").trim();
@@ -19,15 +25,11 @@ $(document).ready(function() {
     var userBuck = {
       title: titleInput,
       category: catInput,
-      image: imgInput,
-      UserId: userId
+      image: imgInput
     };
     console.log("userBucket", userBuck);
     $.ajax({
       url: "/api/buckets",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
-      },
       method: "POST",
       data: userBuck,
       success: function(data) {
@@ -58,16 +60,11 @@ $(document).ready(function() {
     var userBuck = {
       title: titleInput,
       category: catInput,
-      image: imgInput,
-      UserId: userId,
-      token: localStorage.getItem("token")
+      image: imgInput
     };
     console.log("userBucket", userBuck.token, userBuck);
     $.ajax({
       url: "/api/buckets",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
-      },
       method: "POST",
       data: userBuck,
       success: function(data) {
@@ -263,6 +260,9 @@ const renderBuckets = function(userId) {
       console.log(completeUp);
       $.ajax({
         method: "PUT",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        },
         url: "/api/buckets/" + idComplete,
         data: completeUp
       }).then(function() {

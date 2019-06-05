@@ -14,7 +14,7 @@ module.exports = function(app) {
         }
         // gen JWT
         jwt.sign(
-          { dbUser },
+          { id: dbUser.id },
           process.env.MY_SECRET,
           { expiresIn: "24h" },
           function(err, token) {
@@ -95,60 +95,63 @@ module.exports = function(app) {
 
   app.post("/api/buckets", verifyToken, function(req, res) {
     console.log("req.body", req.body);
-    jwt.verify(req.token, process.env.MY_SECRET, (err, authData) => {
-      console.log(authData);
-      if (err) {
-        res.sendStatus(403);
-      } else {
-        db.BucketList.create({
-          title: req.body.title,
-          category: req.body.category,
-          image: req.body.image,
-          UserId: req.body.UserId
-        })
-          .then(function(result) {
-            res.json(result);
-          })
-          .catch(function(err) {
-            res.json({ error: err });
-          });
-      }
-    });
-  });
 
-  app.put("/api/buckets/:id", function(req, res) {
-    let upComplete = {
-      completion: req.body.completion
-    };
-
-    console.log("upcomplete: ", upComplete);
-
-    db.BucketList.update(upComplete, {
-      where: { id: req.params.id }
+    db.BucketList.create({
+      title: req.body.title,
+      category: req.body.category,
+      image: req.body.image,
+      UserId: req.userId
     })
-      .then(function() {
-        res.json({ sucess: true });
+      .then(function(result) {
+        res.json(result);
       })
       .catch(function(err) {
         res.json({ error: err });
       });
   });
 
-  app.delete("/api/deleted/:id", function(req, res) {
-    db.BucketList.destroy({
+  app.put("/api/buckets/:id", verifyToken, function(req, res) {
+    let upComplete = {
+      completion: req.body.completion
+    };
+
+    console.log("upcomplete: ", upComplete);
+
+    db.BucketList.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function(result) {
-      res.json(result);
+    }).then(function(dbBucket) {
+      if (dbBucket.UserId === req.userId) {
+        dbBucket.completion = true;
+        dbBucket.save();
+        res.json({ message: "success!" });
+      } else {
+        res.status(403).end();
+      }
+    });
+  });
+
+  app.delete("/api/deleted/:id", verifyToken, function(req, res) {
+    db.BucketList.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbBucket) {
+      if (dbBucket.UserId === req.userId) {
+        dbBucket.destroy();
+        res.json({ message: "success!" });
+      } else {
+        res.status(403).end();
+      }
     });
   });
 
   app.get("/api/scores/:id", function(req, res) {
     db.BucketList.findAndCountAll({
-            where: {
+      where: {
         UserId: req.params.id,
-        completion:true
+        completion: true
       }
     }).then(function(result) {
       res.json(result);
@@ -157,16 +160,13 @@ module.exports = function(app) {
 
   app.get("/api/percents/:id", function(req, res) {
     db.BucketList.findAndCountAll({
-            where: {
-        UserId: req.params.id,
-        
+      where: {
+        UserId: req.params.id
       }
     }).then(function(result) {
       res.json(result);
     });
   });
-
-
 };
 
 // Verify Token
@@ -181,10 +181,17 @@ function verifyToken(req, res, next) {
     const bearer = bearerHeader.split(" ");
     // Get token from array
     const bearerToken = bearer[1];
-    // Set the token
-    req.token = bearerToken;
-    // Next middleware
-    next();
+
+    jwt.verify(bearerToken, process.env.MY_SECRET, (err, authData) => {
+      if (err) {
+        res.sendStatus(403);
+      } else {
+        req.userId = authData.id;
+
+        // Next middleware
+        next();
+      }
+    });
   } else {
     // Forbidden
     res.sendStatus(403);
