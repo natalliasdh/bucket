@@ -1,5 +1,22 @@
 $(document).ready(function() {
   // renderSignUpForm();
+
+  // sign out user
+  $("#log-out").on("click", function() {
+    localStorage.removeItem("ID");
+    localStorage.removeItem("name");
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  });
+  // show login or sign-up on nav
+  if (localStorage.getItem("name")) {
+    $("#nav-sign-up").hide();
+    $("#carousel-cred").hide();
+    $("#nav-sign-out").show();
+  } else {
+    $("#nav-sign-out").hide();
+    $("#nav-sign-up").show();
+  }
 });
 
 const renderSignUpForm = function() {
