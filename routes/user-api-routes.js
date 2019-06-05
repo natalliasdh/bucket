@@ -96,6 +96,7 @@ module.exports = function(app) {
   app.post("/api/buckets", verifyToken, function(req, res) {
     console.log("req.body", req.body);
     jwt.verify(req.token, process.env.MY_SECRET, (err, authData) => {
+      console.log(authData);
       if (err) {
         res.sendStatus(403);
       } else {
