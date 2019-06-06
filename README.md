@@ -3,7 +3,7 @@
 Project Name: [/bʌkət/]
 Description: An app that allows a user to create an account and add bucket list items to their account. The user can track their progress by completing and checking off items from their bucket list.
 
-![Image of Homepage](https://imgur.com/ipjBi4Q)
+![Image of Homepage](https://i.imgur.com/DfUS1aE.png)
 
 ## Getting Started
 
