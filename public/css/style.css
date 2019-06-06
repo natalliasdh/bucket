@@ -71,33 +71,40 @@ h1 span.spacer {
   position: static;
   background: lightgrey;
   /* background-image: url("../images/footer-background-011.png"); */
-  opacity:0.9;
-  filter:Alpha(opacity=60);
+  opacity: 0.9;
+  filter: Alpha(opacity=60);
   margin-top: 2em;
   float: left;
   width: 100%;
   height: 175px;
-  clear:both;
+  clear: both;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.0em;}
+  line-height: 1em;
+}
 
-  #copyright {
-    font-size: 15px;
-  }
+#copyright {
+  font-size: 15px;
+}
 
-  #heart {
-    color: red;
-  }
+#heart {
+  color: red;
+}
 
-  #dropmodal {
-    color: #17a2b8;
-  }
+#dropmodal {
+  color: #17a2b8;
+}
 
-  #profilebutton {
-    /* float: right !important;
+#profilebutton {
+  /* float: right !important;
     right: 0;
     margin-left: 20%;
     position: relative;
     margin-left: 71%; */
-  }
+}
+
+.shadow-other {
+  -moz-box-shadow: inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow: inset 0 0 10px #000000;
+}

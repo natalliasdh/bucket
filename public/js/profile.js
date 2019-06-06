@@ -1,3 +1,9 @@
+$.ajaxSetup({
+  headers: {
+    Authorization: "Bearer " + localStorage.getItem("token")
+  }
+});
+
 $(document).ready(function() {
   var userId = localStorage.getItem("ID").trim();
   var greeting = localStorage.getItem("name").trim();
@@ -19,15 +25,11 @@ $(document).ready(function() {
     var userBuck = {
       title: titleInput,
       category: catInput,
-      image: imgInput,
-      UserId: userId
+      image: imgInput
     };
     console.log("userBucket", userBuck);
     $.ajax({
       url: "/api/buckets",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
-      },
       method: "POST",
       data: userBuck,
       success: function(data) {
@@ -58,16 +60,11 @@ $(document).ready(function() {
     var userBuck = {
       title: titleInput,
       category: catInput,
-      image: imgInput,
-      UserId: userId,
-      token: localStorage.getItem("token")
+      image: imgInput
     };
     console.log("userBucket", userBuck.token, userBuck);
     $.ajax({
       url: "/api/buckets",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
-      },
       method: "POST",
       data: userBuck,
       success: function(data) {
@@ -181,7 +178,7 @@ const renderBuckets = function(userId) {
       if (elem.completion === true) {
         $(".buckets-listed").append(
           `
-          <div class="card" style="opacity:0.5">
+          <div class="card shadow-other" style="opacity:0.5">
               <img class="card-img-top" src="${
                 elem.image
               }" alt="Card image cap" />
@@ -205,7 +202,7 @@ const renderBuckets = function(userId) {
       } else {
         $(".buckets-listed").append(
           `
-          <div class="card">
+          <div class="card shadow">
               <img class="card-img-top" src="${
                 elem.image
               }" alt="Card image cap" />
@@ -240,6 +237,9 @@ const renderBuckets = function(userId) {
       console.log(completeUp);
       $.ajax({
         method: "PUT",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        },
         url: "/api/buckets/" + idComplete,
         data: completeUp
       }).then(function() {
@@ -276,7 +276,7 @@ function renderSuggestions(id) {
     data.forEach(function(elem) {
       $("#render-suggest").append(
         `
-        <div class="card">
+        <div class="card shadow">
             <img class="card-img-top" src="${
               elem.image
             }" alt="Card image cap" />
