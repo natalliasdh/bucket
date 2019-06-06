@@ -12,9 +12,7 @@ module.exports = function(sequelize, DataTypes) {
     image: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        isUrl: true
-      }
+      validate: {}
     },
     completion: {
       type: DataTypes.BOOLEAN,
