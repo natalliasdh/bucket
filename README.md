@@ -1,7 +1,9 @@
-# Bucket-List-Project-2
+# Bucket-List-Project-2 
 
 Project Name: [/bʌkət/]
 Description: An app that allows a user to create an account and add bucket list items to their account. The user can track their progress by completing and checking off items from their bucket list.
+
+![Image of Homepage](https://imgur.com/ipjBi4Q)
 
 ## Getting Started
 
@@ -32,7 +34,7 @@ https://shielded-mesa-90274.herokuapp.com/
 
 ## Built With
 
-- [node.js](https://nodejs.org/en/) - Open source server environment
+- [node.js](https://nodejs.org/en/) - Open source server environment 
 - [mySQL](https://www.mysql.com/downloads/) - Database management system
 - [JavaScript](https://www.javascript.com/resources) - Programing language of HTML and the web
 - [jQuery](https://jquery.com/download/) - JavaScript library
