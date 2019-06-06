@@ -178,7 +178,7 @@ const renderBuckets = function(userId) {
       if (elem.completion === true) {
         $(".buckets-listed").append(
           `
-          <div class="card" style="opacity:0.5">
+          <div class="card shadow-other" style="opacity:0.5">
               <img class="card-img-top" src="${
                 elem.image
               }" alt="Card image cap" />
@@ -202,7 +202,7 @@ const renderBuckets = function(userId) {
       } else {
         $(".buckets-listed").append(
           `
-          <div class="card">
+          <div class="card shadow">
               <img class="card-img-top" src="${
                 elem.image
               }" alt="Card image cap" />
@@ -276,7 +276,7 @@ function renderSuggestions(id) {
     data.forEach(function(elem) {
       $("#render-suggest").append(
         `
-        <div class="card">
+        <div class="card shadow">
             <img class="card-img-top" src="${
               elem.image
             }" alt="Card image cap" />

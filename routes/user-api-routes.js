@@ -76,7 +76,7 @@ module.exports = function(app) {
       .then(function(dbUser) {
         // gen JWT
         jwt.sign(
-          { dbUser },
+          { id: dbUser.id },
           process.env.MY_SECRET,
           { expiresIn: "24h" },
           function(err, token) {
@@ -182,7 +182,7 @@ function verifyToken(req, res, next) {
     // Get token from array
     const bearerToken = bearer[1];
 
-    jwt.verify(bearerToken, process.env.MY_SECRET, (err, authData) => {
+    jwt.verify(bearerToken, process.env.MY_SECRET, function(err, authData) {
       if (err) {
         res.sendStatus(403);
       } else {
